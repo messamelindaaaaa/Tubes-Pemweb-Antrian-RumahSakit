@@ -1,30 +1,22 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
-@section('title', 'Daftar Antrian')
+@include('partials.navbar')
 
 @section('content')
-<h1>Daftar Antrian</h1>
-
-<table>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Pasien</th>
-            <th>Dokter</th>
-            <th>Nomor Antrian</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($antrians as $antrian)
-        <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $antrian->user->name }}</td>
-            <td>{{ $antrian->dokter->nama }}</td>
-            <td>{{ $antrian->nomor }}</td>
-            <td>{{ $antrian->status }}</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+    <div style="height: 800px">
+        <livewire:antrian.show-antrian>
+    </div>
 @endsection
+
+@section('script')
+    <script>
+        window.addEventListener('closeModal', event => {
+            $('#createAntrian').modal('hide')
+            $('#editAntrian').modal('hide')
+            $('#deleteAntrian').modal('hide')
+        })
+    
+    </script>
+@endsection
+
+@include('partials.footer')
